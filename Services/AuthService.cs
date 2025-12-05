@@ -134,30 +134,29 @@ public class AuthService(
 
     public async Task<Result> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken = default)
     {
-        var emailIsExists = await _userManager.Users.AnyAsync(x => x.Email == request.Email, cancellationToken);
+            var emailIsExists = await _userManager.Users.AnyAsync(x => x.Email == request.Email, cancellationToken);
 
-        if (emailIsExists)
-            return Result.Failure(UserErrors.DuplicatedEmail);
+            if (emailIsExists)
+                return Result.Failure(UserErrors.DuplicatedEmail);
 
-        var user = request.Adapt<ApplicationUser>();
+            var user = request.Adapt<ApplicationUser>();
 
-        var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _userManager.CreateAsync(user, request.Password);
 
-        if (result.Succeeded)
-        {
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            if (result.Succeeded)
+            {
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-            _logger.LogInformation("Confirmation code: {code}", code);
+                _logger.LogInformation("Confirmation code: {code}", code);
 
-            await SendConfirmationEmail(user, code);
+                await SendConfirmationEmail(user, code);
 
-            return Result.Success();
-        }
+                return Result.Success();
+            }
+            var error = result.Errors.First();
 
-        var error = result.Errors.First();
-
-        return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
+            return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
     }
 
     public async Task<Result> ConfirmEmailAsync(ConfirmEmailRequest request)
@@ -260,39 +259,38 @@ public class AuthService(
         return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
     }
 
+
     private async Task SendConfirmationEmail(ApplicationUser user, string code)
     {
         var origin = _httpContextAccessor.HttpContext?.Request.Headers.Origin;
 
-        var emailBody = EmailBodyBuilder.GenerateEmailBody("EmailConfirmation",
-            templateModel: new Dictionary<string, string>
-            {
-                { "{{name}}", user.FirstName },
-                    { "{{action_url}}", $"{origin}/auth/emailConfirmation?userId={user.Id}&code={code}" }
-            }
+        var emailBody = EmailBodyBuilder.GenerateEmailBody(
+       new Dictionary<string, string>
+       {
+            { "{{name}}", user.FirstName },
+            { "{{action_url}}", $"{origin}/auth/emailConfirmation?userId={user.Id}&code={code}" }
+       }
         );
 
-        await  _emailSender.SendEmailAsync(user.Email!, "✅ Survey Basket: Email Confirmation", emailBody);
-
+        await _emailSender.SendEmailAsync(user.Email!, "✅ Career Path : Email Confirmation", emailBody);
         await Task.CompletedTask;
     }
 
     private async Task SendResetPasswordEmail(ApplicationUser user, string code)
     {
         var origin = _httpContextAccessor.HttpContext?.Request.Headers.Origin;
+        var emailBody = ForgetPasswordBodyBuilder.GenerateEmailBody(
+          new Dictionary<string, string>
+          {
+             { "{{name}}", user.FirstName },
+             { "{{action_url}}", $"{origin}/auth/forgetPassword?email={user.Email}&code={code}" }
+          }
+      );
 
-        var emailBody = EmailBodyBuilder.GenerateEmailBody("ForgetPassword",
-            templateModel: new Dictionary<string, string>
-            {
-                { "{{name}}", user.FirstName },
-                { "{{action_url}}", $"{origin}/auth/forgetPassword?email={user.Email}&code={code}" }
-            }
-        );
-
-       await _emailSender.SendEmailAsync(user.Email!, "✅ Survey Basket: Change Password", emailBody);
-
+        await _emailSender.SendEmailAsync(user.Email!, "✅ Career Path: Reset Password", emailBody);
         await Task.CompletedTask;
     }
+
 
     private async Task<(IEnumerable<string> roles, IEnumerable<string> permissions)> GetUserRolesAndPermissions(ApplicationUser user, CancellationToken cancellationToken)
     {
@@ -308,3 +306,9 @@ public class AuthService(
         return (userRoles, userPermissions);
     }
 }
+
+
+
+
+
+

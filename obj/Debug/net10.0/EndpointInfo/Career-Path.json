@@ -6,9 +6,6 @@
   },
   "servers": [
     {
-      "url": "https://localhost:7283"
-    },
-    {
       "url": "http://localhost:5250"
     }
   ],

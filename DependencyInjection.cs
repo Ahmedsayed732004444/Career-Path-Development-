@@ -22,13 +22,13 @@ namespace Career_Path
             services.AddOpenApi();
 
             services.AddCors(options =>
-                options.AddDefaultPolicy(builder =>
-                    builder
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>()!)
-                )
-            );
+           options.AddDefaultPolicy(builder =>
+               builder
+                   .AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod()
+           )
+                   );
 
             services.AddAuthConfig(configuration);
 

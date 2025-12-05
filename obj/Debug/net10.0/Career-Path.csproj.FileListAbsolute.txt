@@ -27,7 +27,6 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\staticwebass
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\Career-P.98FBB293.Up2Date
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\Career-Path.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\refint\Career-Path.dll
@@ -220,3 +219,4 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\runtimes\win
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\runtimes\win\lib\net9.0\System.Windows.Extensions.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
