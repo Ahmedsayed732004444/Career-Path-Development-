@@ -17,7 +17,7 @@ namespace Career_Path.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.1")
+                .HasAnnotation("ProductVersion", "10.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -174,7 +174,7 @@ namespace Career_Path.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Career_Path.Entities.HardSkill", b =>
+            modelBuilder.Entity("Career_Path.Entities.Skill", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -194,30 +194,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("HardSkills", (string)null);
-                });
-
-            modelBuilder.Entity("Career_Path.Entities.SoftSkill", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("UserProfileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserProfileId");
-
-                    b.ToTable("SoftSkills", (string)null);
+                    b.ToTable("Skills", (string)null);
                 });
 
             modelBuilder.Entity("Career_Path.Entities.UserProfile", b =>
@@ -233,40 +210,33 @@ namespace Career_Path.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Company")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CurrentCompany")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("CvFileUrl")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
-
                     b.Property<string>("Degree")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int?>("GraduationYear")
                         .HasColumnType("int");
 
                     b.Property<string>("JobTitle")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -274,20 +244,15 @@ namespace Career_Path.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<decimal?>("SalaryExpectations")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Summary")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("University")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("YearsOfExperience")
+                    b.Property<int?>("YearsOfExperience")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -448,21 +413,10 @@ namespace Career_Path.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("Career_Path.Entities.HardSkill", b =>
+            modelBuilder.Entity("Career_Path.Entities.Skill", b =>
                 {
                     b.HasOne("Career_Path.Entities.UserProfile", "UserProfile")
-                        .WithMany("HardSkills")
-                        .HasForeignKey("UserProfileId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("UserProfile");
-                });
-
-            modelBuilder.Entity("Career_Path.Entities.SoftSkill", b =>
-                {
-                    b.HasOne("Career_Path.Entities.UserProfile", "UserProfile")
-                        .WithMany("SoftSkills")
+                        .WithMany("Skills")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -534,15 +488,12 @@ namespace Career_Path.Migrations
 
             modelBuilder.Entity("Career_Path.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("UserProfile")
-                        .IsRequired();
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.UserProfile", b =>
                 {
-                    b.Navigation("HardSkills");
-
-                    b.Navigation("SoftSkills");
+                    b.Navigation("Skills");
                 });
 #pragma warning restore 612, 618
         }

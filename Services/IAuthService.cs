@@ -11,4 +11,6 @@ public interface IAuthService
     Task<Result> ResendConfirmationEmailAsync(ResendConfirmationEmailRequest request);
     Task<Result> SendResetPasswordCodeAsync(string email);
     Task<Result> ResetPasswordAsync(ResetPasswordRequest request);
+   // Task<Result<AuthResponse>> ExternalLoginAsync(string provider, CancellationToken cancellationToken = default);
+   // Task<Result<AuthResponse>> ExternalLoginCallbackAsync(CancellationToken cancellationToken = default);
 }

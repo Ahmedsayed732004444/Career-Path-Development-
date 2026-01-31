@@ -1,5 +1,4 @@
-using Career_Path;
-using Microsoft.AspNetCore.Identity;
+﻿using Career_Path;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +13,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.MapOpenApi();
-    app.UseSwaggerUI(options => { options.SwaggerEndpoint("/openapi/v1.json", "careerPath V1"); });
+app.MapOpenApi();
+app.UseSwaggerUI(options => { options.SwaggerEndpoint("/openapi/v1.json", "careerPath V1"); });
 //}
 app.UseCors();
-app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();

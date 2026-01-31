@@ -36,10 +36,7 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Mi
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Bcl.Cryptography.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Build.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Build.Framework.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Build.Tasks.Core.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.Build.Utilities.Core.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.CodeAnalysis.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
@@ -62,7 +59,6 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Mi
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.IdentityModel.Protocols.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.IdentityModel.Tokens.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.NET.StringTools.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.OpenApi.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.SqlServer.Server.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\MimeKit.dll
@@ -88,15 +84,10 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Sy
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Composition.Runtime.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Composition.TypedParts.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Configuration.ConfigurationManager.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Formats.Nrbf.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Linq.Dynamic.Core.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Memory.Data.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Reflection.MetadataLoadContext.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Resources.Extensions.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Security.Cryptography.ProtectedData.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Security.Permissions.dll
-C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Windows.Extensions.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\ca\Hangfire.Core.resources.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\de\Hangfire.Core.resources.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\es\Hangfire.Core.resources.dll
@@ -216,3 +207,5 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\Ca
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\Career-Path.genruntimeconfig.cache
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\ref\Career-Path.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Career-Path.staticwebassets.runtime.json
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.VisualStudio.SolutionPersistence.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\AspNet.Security.OAuth.GitHub.dll

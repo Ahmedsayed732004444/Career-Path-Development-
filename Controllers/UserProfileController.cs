@@ -16,29 +16,29 @@ namespace Career_Path.Controllers
         {
             return Ok(await _userProfileService.GetAsync(User.GetUserId()!));
         }
-        [HttpPost]
-        public async Task<IActionResult> AddUserProfile([FromForm] UserProfileRequest request, CancellationToken cancellationToken)
-        {
-            var result = await _userProfileService.AddProfileAsync(User.GetUserId()!, request, cancellationToken);
-            return result.IsSuccess ? Created() : result.ToProblem();
-        }
 
-        [HttpPut("basic-data")]
-        public async Task<IActionResult> UpdateBasicDaya([FromBody] UserProfileBasicRequest request, CancellationToken cancellationToken)
+        [HttpPut("basic-Info")]
+        public async Task<IActionResult> UpdateBasicDaya([FromBody] BasicInfoRequest request, CancellationToken cancellationToken)
         {
-            var result = await _userProfileService.UpdateBasicDataAsync(User.GetUserId()!, request, cancellationToken);
+            var result = await _userProfileService.UpdateBasicInfoAsync(User.GetUserId()!, request, cancellationToken);
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
-        [HttpPut("soft-skills")]
-        public async Task<IActionResult> UpdateSoftSkills([FromBody] UpdateUserProfileSoftSkillsRequest request, CancellationToken cancellationToken)
+        [HttpPut("skills")]
+        public async Task<IActionResult> UpdateSoftSkills([FromBody] SkillsRequest request, CancellationToken cancellationToken)
         {
-            var result = await _userProfileService.UpdateSoftSkillsAsync(User.GetUserId()!, request, cancellationToken);
+            var result = await _userProfileService.UpdateSkillsAsync(User.GetUserId()!, request, cancellationToken);
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
-        [HttpPut("hard-skills")]
-        public async Task<IActionResult> UpdateHardSkills([FromBody] UpdateUserProfileHardSkillsRequest request, CancellationToken cancellationToken)
+        [HttpPut("education")]
+        public async Task<IActionResult> UpdateEducation([FromBody] EducationRequest request, CancellationToken cancellationToken)
         {
-            var result = await _userProfileService.UpdateHardSkillsAsync(User.GetUserId()!, request, cancellationToken);
+            var result = await _userProfileService.UpdateEducationAsync(User.GetUserId()!, request, cancellationToken);
+            return result.IsSuccess ? NoContent() : result.ToProblem();
+        }
+        [HttpPut("summary")]
+        public async Task<IActionResult> UpdateSummary([FromBody] SummaryRequest request, CancellationToken cancellationToken)
+        {
+            var result = await _userProfileService.UpdateSummaryAsync(User.GetUserId()!, request, cancellationToken);
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
         [HttpPut("cv")]

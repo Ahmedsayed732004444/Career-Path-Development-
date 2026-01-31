@@ -13,7 +13,7 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
         builder.Property(x => x.FirstName).HasMaxLength(100);
         builder.Property(x => x.LastName).HasMaxLength(100);
 
-        //Default Data
+       // Default Data
         builder.HasData(new ApplicationUser
         {
             Id = DefaultUsers.Admin.Id,

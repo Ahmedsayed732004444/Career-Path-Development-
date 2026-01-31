@@ -1,5 +1,42 @@
 [
   {
+    "ContainingType": "Career_Path.Controllers.AuthenticationController",
+    "Method": "GitHubLoginCallback",
+    "RelativePath": "api/Authentication/github/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "remoteError",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AuthenticationController",
+    "Method": "GitHubLogin",
+    "RelativePath": "api/Authentication/github/login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Career_Path.Controllers.UserProfileController",
     "Method": "GetUserProfile",
     "RelativePath": "api/UserProfile",
@@ -11,106 +48,15 @@
   },
   {
     "ContainingType": "Career_Path.Controllers.UserProfileController",
-    "Method": "AddUserProfile",
-    "RelativePath": "api/UserProfile",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ProfilePicture",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "Gender",
-        "Type": "Career_Path.Entities.UserGender",
-        "IsRequired": false
-      },
-      {
-        "Name": "JobTitle",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Country",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "City",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "University",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Degree",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "YearsOfExperience",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "SoftSkills",
-        "Type": "System.Collections.Generic.ICollection\u00601[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "HardSkills",
-        "Type": "System.Collections.Generic.ICollection\u00601[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "DateOfBirth",
-        "Type": "System.DateOnly",
-        "IsRequired": false
-      },
-      {
-        "Name": "SalaryExpectations",
-        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Summary",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "GraduationYear",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Company",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "CvFile",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Career_Path.Controllers.UserProfileController",
     "Method": "UpdateBasicDaya",
-    "RelativePath": "api/UserProfile/basic-data",
+    "RelativePath": "api/UserProfile/basic-Info",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Career_Path.Contracts.UserProfile.UserProfileBasicRequest",
+        "Type": "Career_Path.Contracts.UserProfile.BasicInfoRequest",
         "IsRequired": true
       }
     ],
@@ -144,15 +90,15 @@
   },
   {
     "ContainingType": "Career_Path.Controllers.UserProfileController",
-    "Method": "UpdateHardSkills",
-    "RelativePath": "api/UserProfile/hard-skills",
+    "Method": "UpdateEducation",
+    "RelativePath": "api/UserProfile/education",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Career_Path.Contracts.UserProfile.UpdateUserProfileHardSkillsRequest",
+        "Type": "Career_Path.Contracts.UserProfile.EducationRequest",
         "IsRequired": true
       }
     ],
@@ -187,23 +133,39 @@
   {
     "ContainingType": "Career_Path.Controllers.UserProfileController",
     "Method": "UpdateSoftSkills",
-    "RelativePath": "api/UserProfile/soft-skills",
+    "RelativePath": "api/UserProfile/skills",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Career_Path.Contracts.UserProfile.UpdateUserProfileSoftSkillsRequest",
+        "Type": "Career_Path.Contracts.UserProfile.SkillsRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "Career_Path.Controllers.UserProfileController",
+    "Method": "UpdateSummary",
+    "RelativePath": "api/UserProfile/summary",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Career_Path.Contracts.UserProfile.SummaryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
     "Method": "Login",
-    "RelativePath": "Auth",
+    "RelativePath": "auth",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -217,9 +179,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "ConfirmEmail",
-    "RelativePath": "Auth/confirm-email",
+    "RelativePath": "auth/confirm-email",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -233,9 +195,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "ForgetPassword",
-    "RelativePath": "Auth/forget-password",
+    "RelativePath": "auth/forget-password",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -249,9 +211,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "Refresh",
-    "RelativePath": "Auth/refresh",
+    "RelativePath": "auth/refresh",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -265,9 +227,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "Register",
-    "RelativePath": "Auth/register",
+    "RelativePath": "auth/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -281,9 +243,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "ResendConfirmationEmail",
-    "RelativePath": "Auth/resend-confirmation-email",
+    "RelativePath": "auth/resend-confirmation-email",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -297,9 +259,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "ResetPassword",
-    "RelativePath": "Auth/reset-password",
+    "RelativePath": "auth/reset-password",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -313,9 +275,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Career_Path.Controllers.AuthController",
+    "ContainingType": "AuthController",
     "Method": "RevokeRefreshToken",
-    "RelativePath": "Auth/revoke-refresh-token",
+    "RelativePath": "auth/revoke-refresh-token",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

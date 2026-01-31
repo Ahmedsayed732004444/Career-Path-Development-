@@ -40,4 +40,5 @@ public record UserErrors
         new("User.ProfileNotFound", "User profile not found", StatusCodes.Status404NotFound);
     public static readonly Error FileNotFound =
         new("User.FileNotFound", "File not found", StatusCodes.Status404NotFound);
+
 }

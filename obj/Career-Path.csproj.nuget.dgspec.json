@@ -52,11 +52,15 @@
           "dependencies": {
             "Asp.Versioning.Http": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[8.1.1, )"
             },
             "Asp.Versioning.Mvc.ApiExplorer": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[8.1.1, )"
+            },
+            "AspNet.Security.OAuth.GitHub": {
+              "target": "Package",
+              "version": "[10.0.0, )"
             },
             "AspNetCore.HealthChecks.Hangfire": {
               "target": "Package",
@@ -112,33 +116,33 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[10.0.2, )"
             },
             "Microsoft.Extensions.Caching.Hybrid": {
               "target": "Package",
-              "version": "[10.1.0, )"
+              "version": "[10.2.0, )"
             },
             "MimeKit": {
               "target": "Package",
@@ -150,7 +154,7 @@
             },
             "Scalar.AspNetCore": {
               "target": "Package",
-              "version": "[2.11.10, )"
+              "version": "[2.12.17, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",

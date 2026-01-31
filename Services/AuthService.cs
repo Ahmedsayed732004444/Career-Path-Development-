@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 namespace Career_Path.Services;
 
@@ -183,6 +185,13 @@ public class AuthService(
         if (result.Succeeded)
         {
             await _userManager.AddToRoleAsync(user, DefaultRoles.Member.Name);
+            var userProfile = new UserProfile
+            {
+                ApplicationUserId = user.Id
+            };
+
+            _context.UserProfiles.Add(userProfile);
+            await _context.SaveChangesAsync();
             return Result.Success();
         }
 
@@ -305,10 +314,7 @@ public class AuthService(
 
         return (userRoles, userPermissions);
     }
+
+
 }
-
-
-
-
-
 

@@ -9,8 +9,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
 
     public DbSet<UserProfile> UserProfiles { get; set; } = null!;
-    public DbSet<SoftSkill> SoftSkills { get; set; } = null!;
-    public DbSet<HardSkill> HardSkills { get; set; } = null!;
+    public DbSet<Skill> Skills { get; set; } = null!;
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

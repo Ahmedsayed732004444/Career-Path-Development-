@@ -6,14 +6,11 @@
   },
   "servers": [
     {
-      "url": "https://localhost:7283"
-    },
-    {
       "url": "http://localhost:5250"
     }
   ],
   "paths": {
-    "/Auth": {
+    "/auth": {
       "post": {
         "tags": [
           "Auth"
@@ -48,7 +45,7 @@
         }
       }
     },
-    "/Auth/refresh": {
+    "/auth/refresh": {
       "post": {
         "tags": [
           "Auth"
@@ -83,7 +80,7 @@
         }
       }
     },
-    "/Auth/revoke-refresh-token": {
+    "/auth/revoke-refresh-token": {
       "post": {
         "tags": [
           "Auth"
@@ -118,7 +115,7 @@
         }
       }
     },
-    "/Auth/register": {
+    "/auth/register": {
       "post": {
         "tags": [
           "Auth"
@@ -153,7 +150,7 @@
         }
       }
     },
-    "/Auth/confirm-email": {
+    "/auth/confirm-email": {
       "post": {
         "tags": [
           "Auth"
@@ -188,7 +185,7 @@
         }
       }
     },
-    "/Auth/resend-confirmation-email": {
+    "/auth/resend-confirmation-email": {
       "post": {
         "tags": [
           "Auth"
@@ -223,7 +220,7 @@
         }
       }
     },
-    "/Auth/forget-password": {
+    "/auth/forget-password": {
       "post": {
         "tags": [
           "Auth"
@@ -258,7 +255,7 @@
         }
       }
     },
-    "/Auth/reset-password": {
+    "/auth/reset-password": {
       "post": {
         "tags": [
           "Auth"
@@ -289,6 +286,58 @@
             "content": {
               "application/json": { }
             }
+          }
+        }
+      }
+    },
+    "/api/Authentication/github/login": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Authentication/github/callback": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "remoteError",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -303,88 +352,28 @@
             "description": "OK"
           }
         }
-      },
-      "post": {
+      }
+    },
+    "/api/UserProfile/basic-Info": {
+      "put": {
         "tags": [
           "UserProfile"
         ],
         "requestBody": {
           "content": {
-            "application/x-www-form-urlencoded": {
+            "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "ProfilePicture": {
-                    "$ref": "#/components/schemas/IFormFile"
-                  },
-                  "Gender": {
-                    "$ref": "#/components/schemas/UserGender"
-                  },
-                  "JobTitle": {
-                    "type": "string"
-                  },
-                  "Country": {
-                    "type": "string"
-                  },
-                  "City": {
-                    "type": "string"
-                  },
-                  "University": {
-                    "type": "string"
-                  },
-                  "Degree": {
-                    "type": "string"
-                  },
-                  "YearsOfExperience": {
-                    "pattern": "^-?(?:0|[1-9]\\d*)$",
-                    "type": [
-                      "integer",
-                      "string"
-                    ],
-                    "format": "int32"
-                  },
-                  "SoftSkills": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "HardSkills": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "DateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                  },
-                  "SalaryExpectations": {
-                    "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-                    "type": [
-                      "number",
-                      "string"
-                    ],
-                    "format": "double"
-                  },
-                  "Summary": {
-                    "type": "string"
-                  },
-                  "GraduationYear": {
-                    "pattern": "^-?(?:0|[1-9]\\d*)$",
-                    "type": [
-                      "integer",
-                      "string"
-                    ],
-                    "format": "int32"
-                  },
-                  "Company": {
-                    "type": "string"
-                  },
-                  "CvFile": {
-                    "$ref": "#/components/schemas/IFormFile"
-                  }
-                }
+                "$ref": "#/components/schemas/BasicInfoRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicInfoRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicInfoRequest"
               }
             }
           },
@@ -397,7 +386,7 @@
         }
       }
     },
-    "/api/UserProfile/basic-data": {
+    "/api/UserProfile/skills": {
       "put": {
         "tags": [
           "UserProfile"
@@ -406,17 +395,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserProfileBasicRequest"
+                "$ref": "#/components/schemas/SkillsRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserProfileBasicRequest"
+                "$ref": "#/components/schemas/SkillsRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserProfileBasicRequest"
+                "$ref": "#/components/schemas/SkillsRequest"
               }
             }
           },
@@ -429,7 +418,7 @@
         }
       }
     },
-    "/api/UserProfile/soft-skills": {
+    "/api/UserProfile/education": {
       "put": {
         "tags": [
           "UserProfile"
@@ -438,17 +427,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileSoftSkillsRequest"
+                "$ref": "#/components/schemas/EducationRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileSoftSkillsRequest"
+                "$ref": "#/components/schemas/EducationRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileSoftSkillsRequest"
+                "$ref": "#/components/schemas/EducationRequest"
               }
             }
           },
@@ -461,7 +450,7 @@
         }
       }
     },
-    "/api/UserProfile/hard-skills": {
+    "/api/UserProfile/summary": {
       "put": {
         "tags": [
           "UserProfile"
@@ -470,17 +459,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileHardSkillsRequest"
+                "$ref": "#/components/schemas/SummaryRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileHardSkillsRequest"
+                "$ref": "#/components/schemas/SummaryRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserProfileHardSkillsRequest"
+                "$ref": "#/components/schemas/SummaryRequest"
               }
             }
           },
@@ -609,6 +598,76 @@
   },
   "components": {
     "schemas": {
+      "BasicInfoRequest": {
+        "required": [
+          "firstName",
+          "lastName",
+          "gender",
+          "country",
+          "city",
+          "jobTitle",
+          "yearsOfExperience",
+          "currentCompany"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "lastName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "gender": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/UserGender"
+              }
+            ]
+          },
+          "country": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "jobTitle": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "yearsOfExperience": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "currentCompany": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "ConfirmEmailRequest": {
         "required": [
           "userId",
@@ -621,6 +680,37 @@
           },
           "code": {
             "type": "string"
+          }
+        }
+      },
+      "EducationRequest": {
+        "required": [
+          "university",
+          "degree",
+          "graduationYear"
+        ],
+        "type": "object",
+        "properties": {
+          "university": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "degree": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "graduationYear": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
           }
         }
       },
@@ -722,13 +812,13 @@
           }
         }
       },
-      "UpdateUserProfileHardSkillsRequest": {
+      "SkillsRequest": {
         "required": [
-          "hardSkills"
+          "skills"
         ],
         "type": "object",
         "properties": {
-          "hardSkills": {
+          "skills": {
             "type": "array",
             "items": {
               "type": "string"
@@ -736,109 +826,22 @@
           }
         }
       },
-      "UpdateUserProfileSoftSkillsRequest": {
+      "SummaryRequest": {
         "required": [
-          "softSkills"
+          "summary"
         ],
         "type": "object",
         "properties": {
-          "softSkills": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "UserGender": {
-        "type": "integer"
-      },
-      "UserProfileBasicRequest": {
-        "required": [
-          "firstName",
-          "lastName",
-          "dateOfBirth",
-          "gender",
-          "jobTitle",
-          "country",
-          "city",
-          "university",
-          "degree",
-          "yearsOfExperience",
-          "salaryExpectations",
-          "summary",
-          "graduationYear",
-          "company"
-        ],
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/UserGender"
-          },
-          "jobTitle": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "university": {
-            "type": "string"
-          },
-          "degree": {
-            "type": "string"
-          },
-          "yearsOfExperience": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "salaryExpectations": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "null",
-              "number",
-              "string"
-            ],
-            "format": "double"
-          },
           "summary": {
             "type": [
               "null",
               "string"
             ]
-          },
-          "graduationYear": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "company": {
-            "type": [
-              "null",
-              "string"
-            ]
           }
         }
+      },
+      "UserGender": {
+        "type": "integer"
       },
       "WeatherForecast": {
         "type": "object",
@@ -876,6 +879,9 @@
   "tags": [
     {
       "name": "Auth"
+    },
+    {
+      "name": "Authentication"
     },
     {
       "name": "UserProfile"

@@ -3,35 +3,41 @@ using Career_Path.Persistence;
 using Career_Path.Settings;
 using FluentValidation.AspNetCore;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
-using System.Threading.RateLimiting;
+using System.Text.Json.Serialization;
 
 namespace Career_Path
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddDependencies(this IServiceCollection services,
-           IConfiguration configuration)
+            IConfiguration configuration)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(
+                        new JsonStringEnumConverter()
+                    );
+                });
+
             services.AddOpenApi();
 
             services.AddCors(options =>
-           options.AddDefaultPolicy(builder =>
-               builder
-                   .AllowAnyOrigin()
-                   .AllowAnyHeader()
-                   .AllowAnyMethod()
-           )
-                   );
+                options.AddDefaultPolicy(builder =>
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                )
+            );
 
             services.AddAuthConfig(configuration);
-            services.AddHttpContextAccessor();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection") ??
                 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -42,52 +48,46 @@ namespace Career_Path
             services
                 .AddMapsterConfig()
                 .AddFluentValidationConfig();
-            
 
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IEmailSender, EmailService>();
             services.AddScoped<IUserProfileService, UserProfileService>();
+            services.AddScoped<IEmailSender, EmailService>();
 
-           
+            services.AddHttpClient();
+            services.AddHttpContextAccessor();
 
             services.AddOptions<MailSettings>()
                 .BindConfiguration(nameof(MailSettings))
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
 
-         
             return services;
         }
 
-     
+        // ==================== Mapster ====================
         private static IServiceCollection AddMapsterConfig(this IServiceCollection services)
         {
             var mappingConfig = TypeAdapterConfig.GlobalSettings;
             mappingConfig.Scan(Assembly.GetExecutingAssembly());
 
             services.AddSingleton<IMapper>(new Mapper(mappingConfig));
-
             return services;
         }
 
+        // ==================== FluentValidation ====================
         private static IServiceCollection AddFluentValidationConfig(this IServiceCollection services)
         {
-            services
-                .AddFluentValidationAutoValidation()
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
         }
 
+        // ==================== AUTH CONFIG ====================
         private static IServiceCollection AddAuthConfig(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-              .AddEntityFrameworkStores<ApplicationDbContext>()
-              .AddDefaultTokenProviders();
-
-            //services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
-            //services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddSingleton<IJwtProvider, JwtProvider>();
 
@@ -96,26 +96,41 @@ namespace Career_Path
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
 
-            var jwtSettings = configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
+            var jwtSettings = configuration
+                .GetSection(JwtOptions.SectionName)
+                .Get<JwtOptions>();
 
             services.AddAuthentication(options =>
             {
+                // JWT هو الافتراضي
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(o =>
+            // ⭐ Cookie ضروري لـ External Login
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            // JWT
+            .AddJwtBearer(options =>
             {
-                o.SaveToken = true;
-                o.TokenValidationParameters = new TokenValidationParameters
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings?.Key!)),
-                    ValidIssuer = jwtSettings?.Issuer,
-                    ValidAudience = jwtSettings?.Audience
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtSettings!.Key)
+                    ),
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidAudience = jwtSettings.Audience
                 };
+            })
+            // GitHub OAuth
+            .AddGitHub(options =>
+            {
+                options.ClientId = configuration["Auth:GitHub:ClientId"]!;
+                options.ClientSecret = configuration["Auth:GitHub:ClientSecret"]!;
+                options.Scope.Add("user:email");
             });
 
             services.Configure<IdentityOptions>(options =>
@@ -127,6 +142,5 @@ namespace Career_Path
 
             return services;
         }
-       
     }
 }
