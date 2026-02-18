@@ -213,3 +213,8 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\refint\Caree
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\Career-Path.pdb
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\Career-Path.genruntimeconfig.cache
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\ref\Career-Path.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Debug\net10.0\compressed\b0axmyjeon-{0}-k5fn3ybw9l-k5fn3ybw9l.gz
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\HtmlAgilityPack.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\HtmlAgilityPack.CssSelectors.NetCore.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\System.Xml.XPath.XmlDocument.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.Google.dll

@@ -6,12 +6,13 @@ namespace Career_Path.Services
 {
     public class UserProfileService(
         ApplicationDbContext context, ILogger<UserProfileService> logger,
-        IWebHostEnvironment env, IHttpContextAccessor accessor) : IUserProfileService
+        IWebHostEnvironment env, IHttpContextAccessor accessor, IExtractionService extractionService) : IUserProfileService
     {
         private readonly ApplicationDbContext _context = context;
         private readonly ILogger<UserProfileService> _logger = logger;
         private readonly IHttpContextAccessor _accessor = accessor;
         private readonly IWebHostEnvironment _env = env;
+        private readonly IExtractionService _extractionService = extractionService;
 
         public async Task<UserProfileResponse> GetAsync(string applicationUserId)
         {
@@ -93,12 +94,21 @@ namespace Career_Path.Services
             if (userProfile is null)
                 return Result.Failure(UserErrors.ProfileNotFound);
 
+            // أولاً: جرب ترفع للـ extraction service
+            var extractionResult = await _extractionService.GetExtractionAsync(applicationUserId, request.CvFile, cancellationToken);
+
+            if (extractionResult.IsFailure)
+                return Result.Failure(extractionResult.Error);
+
+            // لو الـ extraction نجح، دلوقتي احذف الملف القديم ورفع الجديد
             if (!string.IsNullOrEmpty(userProfile.CvFileUrl))
             {
                 FileHelper.DeleteFile(userProfile.CvFileUrl, "CvS", _env);
             }
+
             userProfile.CvFileUrl = await FileHelper.UploadeFileAsync(request.CvFile, "CvS", _env, _accessor);
             await _context.SaveChangesAsync(cancellationToken);
+
             return Result.Success();
         }
         public async Task<Result> UpdatePictureAsync(string applicationUserId, UpdateUserProfilePictureRequest request, CancellationToken cancellationToken = default)

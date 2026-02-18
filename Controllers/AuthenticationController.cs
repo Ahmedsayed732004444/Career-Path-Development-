@@ -5,7 +5,7 @@ namespace Career_Path.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController(IGitHubAuthService gitHubAuthService) : ControllerBase
+    public class AuthenticationController(IGitHubAuthService gitHubAuthService, IGoogleAuthService _googleAuthService) : ControllerBase
     {
         private readonly IGitHubAuthService _gitHubAuthService = gitHubAuthService;
 
@@ -32,6 +32,23 @@ namespace Career_Path.Controllers
             // {
             //     return Redirect($"{returnUrl}#access_token={result.Value.Token}");
             // }
+        }
+        [HttpGet("google/login")]
+        public IActionResult GoogleLogin([FromQuery] string returnUrl = "")
+        {
+            var properties = _googleAuthService.ConfigureGoogleLogin(returnUrl);
+            return Challenge(properties, "Google");
+        }
+
+        [HttpGet("google/callback")]
+        public async Task<IActionResult> GoogleLoginCallback([FromQuery] string returnUrl = "", [FromQuery] string remoteError = "")
+        {
+            var result = await _googleAuthService.HandleGoogleCallbackAsync(remoteError);
+
+            if (result.IsFailure)
+                return result.ToProblem();
+
+            return Ok(result.Value);
         }
     }
 }

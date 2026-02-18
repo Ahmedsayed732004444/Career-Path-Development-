@@ -1,0 +1,7 @@
+﻿namespace Career_Path.Contracts.Users;
+
+public record UpdateUserRequest(
+    string FirstName,
+    string LastName,
+    string Email
+    );

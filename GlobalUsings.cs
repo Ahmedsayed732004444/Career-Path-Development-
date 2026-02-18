@@ -19,6 +19,6 @@ global using Career_Path.Errors;
 global using Career_Path.Contracts.Authentication;
 global using Career_Path.Authentication;
 //global using Career_Path.Authentication.Filters;
-//global using Career_Path.Contracts.Common;
+global using Career_Path.Contracts.JopSearch;
 global using Career_Path.Services;
 global using System.ComponentModel.DataAnnotations;

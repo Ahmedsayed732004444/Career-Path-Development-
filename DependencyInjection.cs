@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.ApiExplorer;
+using Career_Path.Contracts.Matching;
 using Career_Path.Persistence;
 using Career_Path.Settings;
 using FluentValidation.AspNetCore;
@@ -31,9 +32,11 @@ namespace Career_Path
             services.AddCors(options =>
                 options.AddDefaultPolicy(builder =>
                     builder
-                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                //.AllowCredentials()
+                // .WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>()!)
                 )
             );
 
@@ -52,6 +55,14 @@ namespace Career_Path
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserProfileService, UserProfileService>();
             services.AddScoped<IEmailSender, EmailService>();
+            services.AddScoped<IExtractionService, ExtractionService>();
+            services.AddScoped<IRoadmapService, RoadmapService>();
+            services.AddScoped<IJobSearchService, JobSearchService>();
+            services.AddScoped<IRemoteOkScraperService, RemoteOkScraperService>();
+            services.AddScoped<IGitHubAuthService, GitHubAuthService>();  // ✅ أضفت
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+            services.AddScoped<IMatchService, MatchService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddHttpClient();
             services.AddHttpContextAccessor();
@@ -131,6 +142,14 @@ namespace Career_Path
                 options.ClientId = configuration["Auth:GitHub:ClientId"]!;
                 options.ClientSecret = configuration["Auth:GitHub:ClientSecret"]!;
                 options.Scope.Add("user:email");
+            })
+            // ✅ Google OAuth - استخدم configuration بدل builder.Configuration
+            .AddGoogle(options =>
+            {
+                options.ClientId = configuration["Authentication:Google:ClientId"]!;
+                options.ClientSecret = configuration["Authentication:Google:ClientSecret"]!;
+                options.Scope.Add("profile");
+                options.Scope.Add("email");
             });
 
             services.Configure<IdentityOptions>(options =>

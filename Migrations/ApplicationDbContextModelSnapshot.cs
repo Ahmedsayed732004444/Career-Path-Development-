@@ -17,7 +17,7 @@ namespace Career_Path.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.2")
+                .HasAnnotation("ProductVersion", "10.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -174,6 +174,201 @@ namespace Career_Path.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Career_Path.Entities.ModelExtration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.PrimitiveCollection<string>("Certifications")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("Languages")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("Skills")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("ModelExtrations", (string)null);
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PhaseResource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoadmapPhaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapPhaseId");
+
+                    b.ToTable("PhaseResource", (string)null);
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PhaseSkill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoadmapPhaseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapPhaseId");
+
+                    b.ToTable("PhaseSkill", (string)null);
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.ProjectImprovement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoadmapId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapId");
+
+                    b.ToTable("ProjectImprovement", (string)null);
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.Roadmap", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CurrentDomain")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DurationMonths")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsValidTransition")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MermaidDiagram")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TargetRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransitionDifficulty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValidationMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Roadmaps", (string)null);
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.RoadmapPhase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FocusArea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoadmapId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapId");
+
+                    b.ToTable("RoadmapPhase", (string)null);
+                });
+
             modelBuilder.Entity("Career_Path.Entities.Skill", b =>
                 {
                     b.Property<int>("ID")
@@ -261,6 +456,134 @@ namespace Career_Path.Migrations
                         .IsUnique();
 
                     b.ToTable("UserProfiles", (string)null);
+                });
+
+            modelBuilder.Entity("Intelligent_Career_Advisor.Models.JobApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ApplicationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ApplicationSource")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AttachmentUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("JobApplications", (string)null);
+                });
+
+            modelBuilder.Entity("Job", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("DeadlineDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExperienceLevel")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("JobDescription")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("JobRequirements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("JobType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("PostedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<decimal?>("SalaryMax")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SalaryMin")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("IsActive");
+
+                    b.HasIndex("PostedDate");
+
+                    b.ToTable("Jobs", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -413,6 +736,150 @@ namespace Career_Path.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
+            modelBuilder.Entity("Career_Path.Entities.ModelExtration", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
+                        .WithOne("ModelExtration")
+                        .HasForeignKey("Career_Path.Entities.ModelExtration", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsMany("Career_Path.Entities.Education", "Education", b1 =>
+                        {
+                            b1.Property<int>("ModelExtrationId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("Degree")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Field")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Institution")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Year")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ModelExtrationId", "Id");
+
+                            b1.ToTable("Education", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("ModelExtrationId");
+                        });
+
+                    b.OwnsMany("Career_Path.Entities.Experience", "Experience", b1 =>
+                        {
+                            b1.Property<int>("ModelExtrationId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("Company")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Description")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("EndDate")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("JobTitle")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("StartDate")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ModelExtrationId", "Id");
+
+                            b1.ToTable("Experience", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("ModelExtrationId");
+                        });
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Education");
+
+                    b.Navigation("Experience");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PhaseResource", b =>
+                {
+                    b.HasOne("Career_Path.Entities.RoadmapPhase", "RoadmapPhase")
+                        .WithMany("Resources")
+                        .HasForeignKey("RoadmapPhaseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("RoadmapPhase");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PhaseSkill", b =>
+                {
+                    b.HasOne("Career_Path.Entities.RoadmapPhase", "RoadmapPhase")
+                        .WithMany("Skills")
+                        .HasForeignKey("RoadmapPhaseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("RoadmapPhase");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.ProjectImprovement", b =>
+                {
+                    b.HasOne("Career_Path.Entities.Roadmap", "Roadmap")
+                        .WithMany("ProjectImprovements")
+                        .HasForeignKey("RoadmapId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Roadmap");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.Roadmap", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.RoadmapPhase", b =>
+                {
+                    b.HasOne("Career_Path.Entities.Roadmap", "Roadmap")
+                        .WithMany("Phases")
+                        .HasForeignKey("RoadmapId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Roadmap");
+                });
+
             modelBuilder.Entity("Career_Path.Entities.Skill", b =>
                 {
                     b.HasOne("Career_Path.Entities.UserProfile", "UserProfile")
@@ -433,6 +900,32 @@ namespace Career_Path.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Intelligent_Career_Advisor.Models.JobApplication", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Job", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", null)
+                        .WithMany("PostedJobs")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -488,7 +981,26 @@ namespace Career_Path.Migrations
 
             modelBuilder.Entity("Career_Path.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("ModelExtration")
+                        .IsRequired();
+
+                    b.Navigation("PostedJobs");
+
                     b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.Roadmap", b =>
+                {
+                    b.Navigation("Phases");
+
+                    b.Navigation("ProjectImprovements");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.RoadmapPhase", b =>
+                {
+                    b.Navigation("Resources");
+
+                    b.Navigation("Skills");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.UserProfile", b =>

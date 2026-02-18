@@ -1,5 +1,63 @@
 [
   {
+    "ContainingType": "Career_Path.Controllers.AiController",
+    "Method": "MatchUserWithJobsAsync",
+    "RelativePath": "api/Ai/match",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AiController",
+    "Method": "GetMatchesByPercentageAsync",
+    "RelativePath": "api/Ai/match/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "minPercentage",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AiController",
+    "Method": "GetTopMatchesAsync",
+    "RelativePath": "api/Ai/match/top",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topN",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AiController",
+    "Method": "GetRoadmapAsync",
+    "RelativePath": "api/Ai/roadmap",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetRole",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Career_Path.Controllers.AuthenticationController",
     "Method": "GitHubLoginCallback",
     "RelativePath": "api/Authentication/github/callback",
@@ -31,6 +89,201 @@
       {
         "Name": "returnUrl",
         "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AuthenticationController",
+    "Method": "GoogleLoginCallback",
+    "RelativePath": "api/Authentication/google/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "remoteError",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.AuthenticationController",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/Authentication/google/login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.JopsearchController",
+    "Method": "GetCategories",
+    "RelativePath": "api/Jopsearch/categories/{country}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "country",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.JopsearchController",
+    "Method": "SearchRemoteOkJobs",
+    "RelativePath": "api/Jopsearch/remoteok/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tag",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.JopsearchController",
+    "Method": "SearchJobs",
+    "RelativePath": "api/Jopsearch/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "What",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WhatAnd",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WhatPhrase",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WhatOr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WhatExclude",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TitleOnly",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Where",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Distance",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SalaryMin",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SalaryMax",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SalaryIncludeUnknown",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FullTime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PartTime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Contract",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Permanent",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Company",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MaxDaysOld",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDir",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ResultsPerPage",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
@@ -157,6 +410,101 @@
       {
         "Name": "request",
         "Type": "Career_Path.Contracts.UserProfile.SummaryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "GetAll",
+    "RelativePath": "api/Users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "Add",
+    "RelativePath": "api/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Career_Path.Contracts.Users.CreateUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "Get",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "Update",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Career_Path.Contracts.Users.UpdateUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "ToggleStatus",
+    "RelativePath": "api/Users/{id}/toggle-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Career_Path.Controllers.UsersController",
+    "Method": "Unlock",
+    "RelativePath": "api/Users/{id}/unlock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
