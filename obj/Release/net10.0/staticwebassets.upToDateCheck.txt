@@ -1,4 +1,5 @@
 wwwroot\CvS\efe01806d7d24c1bbfa3ccb840182c25.jpg
 wwwroot\Images\19e3ac5db204421db1f45e22511c84f4.png
 wwwroot\.well-known\pki-validation\BD75C0848D30FAF834D8C32BFD7D17B1.txt
+wwwroot\CvS\f8163f6373924f30ba6d386ae9555ddc.pdf
 C:\Users\AIO\source\repos\Career-Path\Career-Path\wwwroot\.well-known\pki-validation\BD75C0848D30FAF834D8C32BFD7D17B1.txt

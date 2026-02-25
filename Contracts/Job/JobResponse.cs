@@ -4,9 +4,7 @@ namespace Career_Path.Contracts.Job
 {
     public record JobResponse
      (
-         int Id,
-         string CompanyId,
-         string CompanyName,
+         string Id,
          string JobTitle,
          string JobType,
          string JobDescription,

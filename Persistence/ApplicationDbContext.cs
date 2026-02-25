@@ -15,6 +15,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<JobApplication> JobApplications { get; set; }
     public DbSet<Roadmap> Roadmaps { get; set; }
     public DbSet<Job> Jobs { get; set; }
+    public DbSet<JobSubmission> JobSubmissions { get; set; }
+    public DbSet<MembershipUpgrade> MembershipUpgrades { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

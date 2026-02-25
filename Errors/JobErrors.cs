@@ -16,5 +16,9 @@
 
         public static readonly Error JobAlreadyInactive =
             new("Job.AlreadyInactive", "Job is already inactive", StatusCodes.Status400BadRequest);
+        public static readonly Error AlreadyApplied =
+            new("Job.AlreadyApplied", "You have already applied to this job", StatusCodes.Status400BadRequest);
+        public static readonly Error JobClosed =
+            new("Job.Closed", "This job is closed and no longer accepting applications", StatusCodes.Status400BadRequest);
     }
 }

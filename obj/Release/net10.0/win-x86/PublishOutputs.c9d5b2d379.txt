@@ -25,10 +25,13 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\Pu
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\HangfireBasicAuthenticationFilter.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Hangfire.NetCore.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Hangfire.SqlServer.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\HtmlAgilityPack.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\HtmlAgilityPack.CssSelectors.NetCore.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\MailKit.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Mapster.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Mapster.Core.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Mapster.DependencyInjection.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
@@ -71,6 +74,7 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\Pu
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\System.Linq.Dynamic.Core.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\System.Memory.Data.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\System.Xml.XPath.XmlDocument.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\ca\Hangfire.Core.resources.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\de\Hangfire.Core.resources.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\PubTmp\Out\es\Hangfire.Core.resources.dll

@@ -1,11 +1,10 @@
 ﻿public class Job
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = Guid.CreateVersion7().ToString();
 
     // معلومات الشركة (Navigation Property)
     public string CompanyId { get; set; }
     public ApplicationUser Company { get; set; } = default!;
-    public string CompanyName { get; set; }
 
     // تفاصيل الوظيفة
     public string JobTitle { get; set; }
@@ -25,6 +24,8 @@
 
     // Status
     public bool IsActive { get; set; } = true;
+    public List<JobSubmission> JobSubmissions { get; set; } = [];
+
 }
 public enum ExperienceLevel
     {

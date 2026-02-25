@@ -66,5 +66,4 @@ namespace Career_Path.Controllers
             return result.IsSuccess ? NoContent() : result.ToProblem();
         }
     }
-
 }

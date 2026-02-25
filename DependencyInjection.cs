@@ -1,8 +1,6 @@
-﻿using Asp.Versioning.ApiExplorer;
+﻿using Career_Path.Authentication.Filters;
 using Career_Path.Contracts.Matching;
-using Career_Path.Persistence;
 using Career_Path.Settings;
-using FluentValidation.AspNetCore;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -61,8 +59,12 @@ namespace Career_Path
             services.AddScoped<IRemoteOkScraperService, RemoteOkScraperService>();
             services.AddScoped<IGitHubAuthService, GitHubAuthService>();  // ✅ أضفت
             services.AddScoped<IGoogleAuthService, GoogleAuthService>();
-            services.AddScoped<IMatchService, MatchService>();
+            //services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IJobApplicationService, JobApplicationService>();
+            services.AddScoped<IMembershipUpgradeService, MembershipUpgradeService>();
 
             services.AddHttpClient();
             services.AddHttpContextAccessor();
@@ -99,6 +101,8 @@ namespace Career_Path
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
 
             services.AddSingleton<IJwtProvider, JwtProvider>();
 

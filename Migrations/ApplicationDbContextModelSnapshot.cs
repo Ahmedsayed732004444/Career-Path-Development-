@@ -174,6 +174,76 @@ namespace Career_Path.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Career_Path.Entities.JobSubmission", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicantId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AppliedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CVPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("ApplicantId", "JobId")
+                        .IsUnique();
+
+                    b.ToTable("JobSubmissions");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.MembershipUpgrade", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("RequestedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Pending");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("MembershipUpgrades");
+                });
+
             modelBuilder.Entity("Career_Path.Entities.ModelExtration", b =>
                 {
                     b.Property<int>("Id")
@@ -223,7 +293,7 @@ namespace Career_Path.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("ModelExtrations", (string)null);
+                    b.ToTable("ModelExtrations");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.PhaseResource", b =>
@@ -245,7 +315,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("RoadmapPhaseId");
 
-                    b.ToTable("PhaseResource", (string)null);
+                    b.ToTable("PhaseResource");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.PhaseSkill", b =>
@@ -267,7 +337,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("RoadmapPhaseId");
 
-                    b.ToTable("PhaseSkill", (string)null);
+                    b.ToTable("PhaseSkill");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.ProjectImprovement", b =>
@@ -289,7 +359,33 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("RoadmapId");
 
-                    b.ToTable("ProjectImprovement", (string)null);
+                    b.ToTable("ProjectImprovement");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PrompetRoadMap", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PrompetRoadMap");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.Roadmap", b =>
@@ -341,7 +437,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Roadmaps", (string)null);
+                    b.ToTable("Roadmaps");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.RoadmapPhase", b =>
@@ -366,7 +462,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("RoadmapId");
 
-                    b.ToTable("RoadmapPhase", (string)null);
+                    b.ToTable("RoadmapPhase");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.Skill", b =>
@@ -460,63 +556,20 @@ namespace Career_Path.Migrations
 
             modelBuilder.Entity("Intelligent_Career_Advisor.Models.JobApplication", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("ApplicationSource")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("JobApplications", (string)null);
-                });
-
-            modelBuilder.Entity("Job", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CompanyId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -524,6 +577,43 @@ namespace Career_Path.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationDate");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("JobApplications");
+                });
+
+            modelBuilder.Entity("Job", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeadlineDate")
                         .HasColumnType("datetime2");
@@ -583,7 +673,7 @@ namespace Career_Path.Migrations
 
                     b.HasIndex("PostedDate");
 
-                    b.ToTable("Jobs", (string)null);
+                    b.ToTable("Jobs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -609,6 +699,113 @@ namespace Career_Path.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:add",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:update",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "permissions",
+                            ClaimValue = "roles:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "permissions",
+                            ClaimValue = "roles:add",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "permissions",
+                            ClaimValue = "roles:update",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "permissions",
+                            ClaimValue = "profile:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "permissions",
+                            ClaimValue = "profile:update",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "permissions",
+                            ClaimValue = "jobs:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "permissions",
+                            ClaimValue = "jobs:add",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "permissions",
+                            ClaimValue = "jobs:update",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "permissions",
+                            ClaimValue = "jobApplicants:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "permissions",
+                            ClaimValue = "membershipUpgradeRequests:read",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "permissions",
+                            ClaimValue = "membershipUpgradeRequests:approve",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "permissions",
+                            ClaimValue = "membershipUpgradeRequests:reject",
+                            RoleId = "0191a4b6-c4fc-752e-9d95-40b5e4e68054"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -736,6 +933,36 @@ namespace Career_Path.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
+            modelBuilder.Entity("Career_Path.Entities.JobSubmission", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("JobSubmissions")
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Job", "Job")
+                        .WithMany("JobSubmissions")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.MembershipUpgrade", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Career_Path.Entities.ModelExtration", b =>
                 {
                     b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
@@ -773,7 +1000,7 @@ namespace Career_Path.Migrations
 
                             b1.HasKey("ModelExtrationId", "Id");
 
-                            b1.ToTable("Education", (string)null);
+                            b1.ToTable("Education");
 
                             b1.WithOwner()
                                 .HasForeignKey("ModelExtrationId");
@@ -812,7 +1039,7 @@ namespace Career_Path.Migrations
 
                             b1.HasKey("ModelExtrationId", "Id");
 
-                            b1.ToTable("Experience", (string)null);
+                            b1.ToTable("Experience");
 
                             b1.WithOwner()
                                 .HasForeignKey("ModelExtrationId");
@@ -856,6 +1083,16 @@ namespace Career_Path.Migrations
                         .IsRequired();
 
                     b.Navigation("Roadmap");
+                });
+
+            modelBuilder.Entity("Career_Path.Entities.PrompetRoadMap", b =>
+                {
+                    b.HasOne("Career_Path.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("PrompetRoadMaps")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Career_Path.Entities.Roadmap", b =>
@@ -981,10 +1218,14 @@ namespace Career_Path.Migrations
 
             modelBuilder.Entity("Career_Path.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("JobSubmissions");
+
                     b.Navigation("ModelExtration")
                         .IsRequired();
 
                     b.Navigation("PostedJobs");
+
+                    b.Navigation("PrompetRoadMaps");
 
                     b.Navigation("UserProfile");
                 });
@@ -1006,6 +1247,11 @@ namespace Career_Path.Migrations
             modelBuilder.Entity("Career_Path.Entities.UserProfile", b =>
                 {
                     b.Navigation("Skills");
+                });
+
+            modelBuilder.Entity("Job", b =>
+                {
+                    b.Navigation("JobSubmissions");
                 });
 #pragma warning restore 612, 618
         }

@@ -40,5 +40,14 @@ public record UserErrors
         new("User.ProfileNotFound", "User profile not found", StatusCodes.Status404NotFound);
     public static readonly Error FileNotFound =
         new("User.FileNotFound", "File not found", StatusCodes.Status404NotFound);
+    
+    public static readonly Error DuplicatedRequest 
+        = new("User.DuplicatedRequest", "A similar request is already in progress, please wait", StatusCodes.Status429TooManyRequests);
+    public static readonly Error RequestNotFound =
+        new("User.RequestNotFound", "Request not found", StatusCodes.Status404NotFound);
+    public static readonly Error CannotRejectRequest =
+        new("User.CannotRejectRequest", "Cannot reject a  request", StatusCodes.Status400BadRequest);
+    public static readonly Error CannotApproveRequest =
+        new("User.CannotApproveRequest", "Cannot approve a request", StatusCodes.Status400BadRequest);
 
 }

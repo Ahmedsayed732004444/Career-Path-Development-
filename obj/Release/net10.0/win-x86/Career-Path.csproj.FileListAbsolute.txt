@@ -210,3 +210,7 @@ C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Ca
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.VisualStudio.SolutionPersistence.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\AspNet.Security.OAuth.GitHub.dll
 C:\Users\AIO\source\repos\Career-Path\Career-Path\obj\Release\net10.0\win-x86\compressed\b0axmyjeon-{0}-k5fn3ybw9l-k5fn3ybw9l.gz
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\HtmlAgilityPack.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\HtmlAgilityPack.CssSelectors.NetCore.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\AIO\source\repos\Career-Path\Career-Path\bin\Release\net10.0\win-x86\System.Xml.XPath.XmlDocument.dll

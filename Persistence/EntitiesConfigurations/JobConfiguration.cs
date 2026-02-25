@@ -18,10 +18,6 @@ namespace Career_Path.Persistence.EntitiesConfigurations
                 .IsRequired()
                 .HasMaxLength(2000);
 
-            builder.Property(j => j.CompanyName)
-                .IsRequired()
-                .HasMaxLength(200);
-
             // معلومات إضافية
             builder.Property(j => j.Location)
                 .HasMaxLength(200);

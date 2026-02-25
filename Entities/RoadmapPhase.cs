@@ -1,6 +1,6 @@
 ﻿namespace Career_Path.Entities
 {
-    public class RoadmapPhase  // ✅ حذفت [Owned]
+    public class RoadmapPhase  
     {
         public int Id { get; set; }
         public int RoadmapId { get; set; }

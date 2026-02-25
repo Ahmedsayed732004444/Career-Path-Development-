@@ -1,6 +1,6 @@
 ﻿namespace Career_Path.Entities
 {
-    public class ProjectImprovement  // ✅ حذفت [Owned]
+    public class ProjectImprovement  
     {
         public int Id { get; set; }
         public int RoadmapId { get; set; }
